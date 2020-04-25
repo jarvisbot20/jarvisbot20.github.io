@@ -58,8 +58,8 @@ function loginAjax(){
   $.ajax(settings).done(function(data){
      if(data["statusCode"]==200){
         window.localStorage.setItem("auth_token", data["auth_token"]);
-         $("#signup_email").val("");
-         $("#signup_password").val("");
+         $("#login_email").val("");
+         $("#login_password").val("");
         window.location.replace("/integrations.html");
     }
     else{
