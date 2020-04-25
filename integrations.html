@@ -231,6 +231,7 @@
       $(document).ready(function(){
         console.log("inside script");
         $("#btn-logout").click(function(){
+          window.localStorage.removeItem("auth_token");
           window.location.replace("/index.html");
         });
       });
