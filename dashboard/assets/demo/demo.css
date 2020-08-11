@@ -187,3 +187,7 @@
   outline: none;
   display: none;
 }
+
+.sidebar-wrapper .nav .active{
+  /* background-color: rgba(89, 0, 255, 0.205); */
+}

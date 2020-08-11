@@ -3237,6 +3237,12 @@ License - nucleoapp.com/license/
   .sidebar[data-color="black"]:after,
   .off-canvas-sidebar[data-color="black"]:after {
     background: #212120; }
+  .sidebar[data-color="jarvis"]:after,
+  .off-canvas-sidebar[data-color="jarvis"]:after {
+    background: #673AB7;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #512DA8, #673AB7);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #512DA8, #673AB7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+ }
   .sidebar[data-active-color="primary"] .nav li.active > a,
   .sidebar[data-active-color="primary"] .nav li.active > a i,
   .sidebar[data-active-color="primary"] .nav li.active > a[data-toggle="collapse"],
@@ -3305,8 +3311,9 @@ License - nucleoapp.com/license/
   .off-canvas-sidebar[data-active-color="danger"] .nav li.active > a[data-toggle="collapse"] i,
   .off-canvas-sidebar[data-active-color="danger"] .nav li.active > a[data-toggle="collapse"] ~ div > ul > li.active .sidebar-mini-icon,
   .off-canvas-sidebar[data-active-color="danger"] .nav li.active > a[data-toggle="collapse"] ~ div > ul > li.active > a {
-    color: #ef8157;
-    opacity: 1; }
+    color: #ffffff;
+    opacity: 1; 
+  }
   .sidebar[data-active-color="default"] .nav li.active > a,
   .sidebar[data-active-color="default"] .nav li.active > a i,
   .sidebar[data-active-color="default"] .nav li.active > a[data-toggle="collapse"],
