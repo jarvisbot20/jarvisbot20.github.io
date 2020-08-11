@@ -39,22 +39,27 @@ function loginAjax(){
   var email_id = $("#login_email").val();
   var password = $("#login_password").val();
   
-  var obj={"email": email_id, "password": password}
-  var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://codefundo2019.tk/login",
-        "method": "POST",
-        "processData": false,
-        "headers": {
-            "content-type": "application/json"
-        },
-        "data" : JSON.stringify(obj)
-  }
-    
+  var obj=
+  {
+      "email" : email_id,
+      "password" : password
+      
+  };
+  var settings= {
+    "async": true,
+    "crossDomain": true,
+    "url": "https://codefundo2019.tk/login",
+    "method": "POST",
+    "headers":{
+        "content-type" : "application/json"
+    },
+    "data" : JSON.stringify(obj)
+  };
   $.ajax(settings).done(function(data){
      if(data["statusCode"]==200){
         window.localStorage.setItem("auth_token", data["auth_token"]);
+         $("#login_email").val("");
+         $("#login_password").val("");
         window.location.replace("/integrations.html");
     }
     else{
@@ -64,30 +69,49 @@ function loginAjax(){
 
 }
 
+
 function signupAjax(){
     
-    var email_id = document.getElementById("signup_email").innerHTML;
-    var username= document.getElementById("username").innerHTML;
-    var password = document.getElementById("signup_password").innerHTML;
-    var companyname = document.getElementById("company-name").innerHTML;
-    var companyurl = document.getElementById("company-url").innerHTML;
-    var password_r = document.getElementById("password_confirmation").innerHTML;
+    var email_id =$("#signup_email").val();
+    var username= $("#username").val();
+    var password = $("#signup_password").val();
+    var companyname = $("#company-name").val();
+    var companyurl = $("#company-url").val();
+    var password_r = $("#password_confirmation").val();
     
-    if(password!=password_r){
+    if(password.localeCompare(password_r)!=0){
         shakeModal();
     }
     else{
         
-        $.post("https://codefundo2019.tk/signup",
+       var obj=
         {
-            email : email_id,
-            username : username,
-            company_name : companyname,
-            company_url : companyurl,
-            password : password
-        },function(data){
+            "email" : email_id,
+            "username" : username,
+            "company_name" : companyname,
+            "company_url" : companyurl,
+            "password" : password
+        };
+        var settings= {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://codefundo2019.tk/signup",
+            "headers" : {
+                "content-type" : "application/json"
+            },
+            "method": "POST",
+             "data" : JSON.stringify(obj)
+        };
+        $.ajax(settings).done(function(data){
             if(data["statusCode"]==200){
-                windows.localStorage.setItem("auth_token", data["auth_token"]);
+                window.localStorage.setItem("auth_token", data["auth_token"]);
+                $("#signup_email").val("");
+                $("#signup_password").val("");
+                $("#username").val("");
+                $("#company-url").val("");
+                $("#company-name").val("");
+                $("#password_confirmation").val("");
+                alert("You have successfully signed up");
             }
             else{
                 shakeModal();
@@ -95,7 +119,6 @@ function signupAjax(){
         });
     }
 }
-
 function shakeModal(){
     $('#loginModal .modal-dialog').addClass('shake');
              $('.error').addClass('alert alert-danger').html("Invalid email/password combination");

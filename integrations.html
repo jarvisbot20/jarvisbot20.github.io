@@ -15,12 +15,49 @@
     <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
     <link rel="stylesheet" href="css/login-register.css">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+      html, body {
+          height: 100%;
+          margin: 0px;
+      }
+      .par_integration {
+          height: 100%;
+      }
+  </style>
   </head>
   <body>
-    <section class="clients_logo_area section-padding" id="integrations"
-    style="background-image: url(img/banner/banner-bg.png);background-color: blueviolet;">
+    <header class="header_area">
+      <div class="main_menu">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <div class="container box_1620">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <a class="navbar-brand logo_h" href="#">
+              <img style="max-width: 80px;max-height: 60px;"src="img/logo.png" alt="">
+              <span style="color: white;text-align: center;"><b>JARVIS</b></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse offset" id="navbarSupportedContent"> 
+              <ul class="nav navbar-nav menu_nav justify-content-end">
+              </ul>
+              <ul class="navbar-right">
+                <li class="nav-item">
+                  <button class="button button-header bg" id="btn-logout" data-toggle="modal" href="javascript:void(0)">Log out</button>
+                </li>
+              </ul>
+            </div> 
+          </div>
+        </nav>
+      </div>
+    </header>
+    <section class="clients_logo_area section-padding par_intgrations" id="integrations"
+    style="background-image: url(img/banner/banner-bg.png);background-color: blueviolet; height : 100%">
       <div class="container">
-        <h2 style="text-align: center;">Our Integrations</h2>
+        <h2 style="text-align: center;">Integrations</h2>
         <br><br>
         <div class="clients_slider owl-carousel">
           <div class="item">
@@ -31,9 +68,6 @@
           </div>
           <div class="item">
             <button data-toggle="modal" data-target="#github_logo"><img src="img/clients-logo/github-logo.svg" style="max-width: 80px;" alt=""></button>
-          </div>
-          <div class="item">
-            <button data-toggle="modal" data-target="#atlassian_logo"><img src="img/clients-logo/atlassian.png" style="max-width: 80px;" alt=""></button>
           </div>
           <div class="item">
             <button data-toggle="modal" data-target="#trello_logo"><img src="img/clients-logo/trello.png" style="max-width: 80px;" alt=""></button>
@@ -54,12 +88,19 @@
           <div class="modal-body">
               <form>
                 <div class="form-group">
-                  <input type="text" class="form-control" id="api_token_travis" aria-describedby="emailHelp" placeholder="Github Personal Token">
+                  <input type="text" class="form-control" id="gh_username" aria-describedby="emailHelp" placeholder="Username">
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" id="gh_personal_access_token" aria-describedby="emailHelp" placeholder="Github Personal Access Token">
+                  <small id="gh_note" class="form-text text-muted">The supplied token should have full repository access</small>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" id="gh_organization" aria-describedby="emailHelp" placeholder="Organization">
                 </div>
               </form>
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" data-dismiss="modal" onclick="gh_submit_integrations()">Submit</button>
           </div>
         </div>
         
@@ -72,25 +113,22 @@
     
         <div class="modal-content">
           <div class="modal-header">
+            <h4 class="modal-title">Gmail integration</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Modal Header</h4>
           </div>
           <div class="modal-body">
             <form>
               <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="email_id_gmail" aria-describedby="emailHelp" placeholder="Email">
+                <input type="email" class="form-control" id="gm_email_id" aria-describedby="emailHelp" placeholder="Email">
                 <small id="gmail_note" class="form-text text-muted">We'll never share your email with anyone else.</small>
               </div>
               <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="password_gmail" placeholder="Password">
+                <input type="password" class="form-control" id="gm_password" placeholder="Password">
               </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" data-dismiss="modal" class="btn btn-primary">Submit</button>
           </div>
         </div>
         
@@ -103,21 +141,19 @@
     
         <div class="modal-content">
           <div class="modal-header">
+            <h4 class="modal-title">Travis Integration</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Modal Header</h4>
+
           </div>
           <div class="modal-body">
             <form>
               <div class="form-group">
-                <label for="exampleInputEmail1">Personal Access Token</label>
-                <input type="text" class="form-control" id="access_token_git" aria-describedby="emailHelp" placeholder="Enter your Personal Acesss Token">
-                <small id="git_note" class="form-text text-muted">The supplied token should have full repository access</small>
+                <input type="password" class="form-control" id="tra_api_token" aria-describedby="emailHelp" placeholder="API Token">
               </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" data-dismiss="modal" onclick="tra_submit_integrations()">Submit</button>
           </div>
         </div>
         
@@ -130,24 +166,21 @@
     
         <div class="modal-content">
           <div class="modal-header">
+            <h4 class="modal-title">Atlassian Integration</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Modal Header</h4>
           </div>
           <div class="modal-body">
             <form>
               <div class="form-group">
-                <label for="exampleInputEmail1">Email</label>
-                <input type="text" class="form-control" id="email_id_atlassian" aria-describedby="emailHelp" placeholder="Email">
+                <input type="text" class="form-control" id="atl_email_id" aria-describedby="emailHelp" placeholder="Email">
               </div>
               <div class="form-group">
-                <label for="exampleInputEmail1">API Token</label>
-                <input type="text" class="form-control" id="api_token_atlassian" aria-describedby="emailHelp" placeholder="Enter your API Token">
+                <input type="text" class="form-control" id="atl_api_token" aria-describedby="emailHelp" placeholder="Enter your API Token">
               </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" data-dismiss="modal" class="btn btn-primary">Submit</button>
           </div>
         </div>
         
@@ -160,39 +193,45 @@
     
         <div class="modal-content">
           <div class="modal-header">
+            <h4 class="modal-title">Trello Integration</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Modal Header</h4>
           </div>
           <div class="modal-body">
             <form>
               <div class="form-group">
-                <label for="exampleInputEmail1">Bucket ID</label>
-                <input type="text" class="form-control" id="bucket_id_trello" aria-describedby="emailHelp" placeholder="Enter Bucket ID">
+                <input type="text" class="form-control" id="tre_bucket_id" aria-describedby="emailHelp" placeholder="Enter Bucket ID">
               </div>
               <div class="form-group">
-                <label for="exampleInputEmail1">API Key</label>
-                <input type="text" class="form-control" id="api_key_trello" aria-describedby="emailHelp" placeholder="Enter your API Key here">
+                <input type="password" class="form-control" id="tre_api_key" aria-describedby="emailHelp" placeholder="Enter your API Key here">
               </div>
               <div class="form-group">
-                <label for="exampleInputEmail1">API Token</label>
-                <input type="text" class="form-control" id="api_token_trello" aria-describedby="emailHelp" placeholder="Enter your API Token here">
+                <input type="password" class="form-control" id="tre_api_token" aria-describedby="emailHelp" placeholder="Enter your API Token here">
               </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
             </form>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" data-dismiss="modal" onclick="tre_submit_integrations()">Submit</button>
+              </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
+
         </div>
         
       </div>
     </div>
-
     <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
     <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
     <script src="js/jquery.ajaxchimp.min.js"></script>
     <script src="js/mail-script.js"></script>
+    <script src="js/integrations.js"></script>
     <script src="js/main.js"></script>
+    <script>
+      $(document).ready(function(){
+        console.log("inside script");
+        $("#btn-logout").click(function(){
+          window.localStorage.removeItem("auth_token");
+          window.location.replace("/index.html");
+        });
+      });
+    </script>
   </body>
 </html>

@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="css/login-register.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body >
   <!--================Header Menu Area =================-->
   <header class="header_area">
     <div class="main_menu">
@@ -300,9 +300,6 @@
             <img src="img/clients-logo/github-logo.svg" style="max-width: 80px;" alt="">
           </div>
           <div class="item">
-            <img src="img/clients-logo/atlassian.png" style="max-width: 80px;" alt="">
-          </div>
-          <div class="item">
             <img src="img/clients-logo/trello.png" style="max-width: 80px;" alt="">
           </div>
         </div>
@@ -340,7 +337,7 @@
                             <input id="company-url" class="form-control" type="text" placeholder="Company URL" name="company-url">
                             <input id="signup_password" class="form-control" type="password" placeholder="Password" name="password">
                             <input id="password_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation">
-                            <input class="btn btn-default btn-register" type="button" value="Create account" name="commit">
+                            <input class="btn btn-default btn-register" type="button" value="Create account" name="commit" onclick="signupAjax()">
                             </form>
                             </div>
                         </div>
